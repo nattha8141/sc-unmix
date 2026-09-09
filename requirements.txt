@@ -1,0 +1,5 @@
+torch>=2.1
+numpy
+soundfile>=0.12
+julius==0.2.7
+PyYAML>=6
