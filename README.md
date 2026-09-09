@@ -4,7 +4,7 @@ SC-Unmix is a lightweight vocal separation model based on SCNet, with
 **2,055,561 parameters**. It combines a sparse encoder/decoder, TFC ×3,
 compressed post-TFC attention (4 heads, embedding setting 256), and a split-head
 BiGRU dual-path module with three repeats. The deepest skip uses direct-gate
-CSA; the upper two use SCNet's original fusion layer.
+CSA while the upper two use SCNet's original fusion layer.
 
 The model predicts vocals. Accompaniment is obtained by subtracting predicted
 vocals from the mixture, so its quality depends on the vocal estimate.
