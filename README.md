@@ -11,14 +11,10 @@ vocals from the mixture, so its quality depends on the vocal estimate.
 
 ## Colab demo
 
-1. Open `SC_Unmix.ipynb` in Google Colab and select a GPU runtime.
-2. Run the cells and upload `sc-unmix.zip` when prompted (code and weights included).
+1. Open [this colab notebook](https://colab.research.google.com/drive/1rrxNU4qp40uqXJ5dnBso8p0KBsthHD-h?usp=sharing) in Google Colab and select a GPU runtime.
+2. Follow the instruction in the notebook
 3. Upload WAV/FLAC audio or select the MUSDB sample option.
-4. Listen to previews and download both stems.
-
-The notebook installs dependencies in Colab. No local installation, builder
-script or training dataset is required. The MUSDB option downloads the sample
-dataset through `musdb`, following the Open-Unmix demo workflow.
+4. Listen to previews or download both stems directly from last cell.
 
 ## Local installation and inference
 
