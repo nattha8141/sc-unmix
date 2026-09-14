@@ -108,32 +108,6 @@ MPS model, retaining the path that passed the local Apple smoke test. Extra MPS
 checks identify non-finite inputs, outputs, gradients or parameters. Start with
 batch size 1 for local checks. CPU is available via `--device cpu`.
 
-## Checks and packaging
-
-```bash
-python -m unittest discover -s tests -v
-python tools/smoke_test.py --device cpu
-python tools/smoke_test.py --device mps
-python tools/package_release.py
-```
-
-The smoke test creates temporary synthetic tracks and exercises training,
-validation, checkpoint saving and inference, then removes the temporary files.
-It checks implementation correctness rather than meaningful separation SDR.
-Packaging writes `../sc-unmix.zip` from distribution files only, excluding
-environments, datasets, outputs and runs. The notebook is the canonical demo;
-packaging does not regenerate it or overwrite configuration.
-
-| Location | Purpose |
-| --- | --- |
-| `sc_unmix/SCUnmix.py` | STFT, sparse encoder/decoder, fusion |
-| `sc_unmix/separator.py` | Projection, TFC, attention and IDPM |
-| `sc_unmix/csa_fusion.py` | Attention and gate primitives |
-| `sc_unmix/tfc.py`, `sc_unmix/idpm.py` | Convolutions and dual-path GRUs |
-| `sc_unmix/data.py`, `sc_unmix/loss.py` | Sampling, validation and objective |
-| `sc_unmix/train.py`, `sc_unmix/ema.py` | Training and EMA |
-| `sc_unmix/separate.py`, `sc_unmix/overlap_add.py` | Inference API and CLI |
-
 ## Attribution and provenance
 
 SC-Unmix adapts the sparse encoder/decoder from
@@ -141,13 +115,3 @@ SC-Unmix adapts the sparse encoder/decoder from
 [Sparse Compression Network for Music Source Separation](https://arxiv.org/abs/2401.13276).
 The upstream MIT license and copyright remain in `LICENSE`.
 The demo is inspired by [Open-Unmix](https://github.com/sigsep/open-unmix-pytorch).
-
-Original experiment code:
-`self-modified-SCNet-l4-deep-csa-direct-gate-no-tdf-full-track-validation-post-tfc-attention-vocals`.
-Original checkpoint run:
-`self_modified_scnet_l4_deep_csa_direct_gate_no_tdf_full_track_validation_post_tfc_attention_continued_e320_vocals`.
-
-Checkpoint tensors and historical metadata are preserved. A model class rename
-does not change state-dictionary keys. The historical separator type in
-`model_config` is retained for checkpoint compatibility. New training runs use
-`sc-unmix` as the experiment identifier. See `VERIFICATION.md` for checks and limits.
